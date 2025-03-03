@@ -13,10 +13,21 @@ def main():
 
         hotels=page.locator('//div[@data-testid="property-card"]').all()
         print(f'there are{len(hotels)}hotels.')
+        hotels_list=[]
+        for hotel in hotels :
+          hotel_dict = {}
+          hotel_dict['hotel'] = hotel.locator('//div[@data-testid="title"]').inner_text()
+          hotel_dict['price'] = hotel.locator('//span[@data-testid="price-and-discounted-price"]').inner_text()
+          hotel_dict['score'] = hotel.locator('//div[@data-testid="review-score"]/div[1]').inner_text()
+          hotel_dict['avg review'] = hotel.locator('//div[@data-testid="review-score"]/div[2]/div[1]').inner_text()
+          hotel_dict['reviews count'] = hotel.locator('//div[@data-testid="review-score"]/div[2]/div[2]').inner_text().split()[0]
 
 
+          hotels_list.append(hotel_dict)
+          
+        
         browser.close()
 
 
-if __name__='__main__':  
+if __name__ = '__main__' :  
    main()
