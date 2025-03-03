@@ -24,7 +24,8 @@ def main():
 
 
           hotels_list.append(hotel_dict)
-          
+          df=pd.DataFrame(hotels_list)
+          df.to_excel('hotels_list.xlsx',index=False)
         
         browser.close()
 
